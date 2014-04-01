@@ -45,7 +45,7 @@ Bank::~Bank()
 
 }
 
-	void Bank::setN(int _N)
+void Bank::setN(int _N)
 {
 	N = _N;
 }
@@ -80,7 +80,7 @@ int Bank::Jockeying(int iOrigin)
 	int iResult = -1, abs1, abs2;
 	for(int i=0; i<N; i++)
 	{
-		if(T[i].size() - T[i].size() > 2)
+		if((int(T[iOrigin].size()) - int(T[i].size())) > 2)
 		{
 			if(iResult == -1)
 			{
@@ -103,7 +103,6 @@ int Bank::Jockeying(int iOrigin)
 			}
 		}
 	}
-
 	if(iResult != -1)
 	{
 		int temp = T[iOrigin].back();
