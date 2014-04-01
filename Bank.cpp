@@ -77,7 +77,41 @@ deque<int> Bank::getQueue(int i)
 		
 int Bank::Jockeying(int iOrigin)
 {
+	int iResult = -1, abs1, abs2;
+	for(int i=0; i<N; i++)
+	{
+		if(T[i].size() - T[i].size() > 2)
+		{
+			if(iResult == -1)
+			{
+				iResult = i;
+			}
+			else
+			{
+				if(i - iOrigin > 0)
+					abs1 = i - iOrigin;
+				else
+					abs1 = iOrigin - i;
 
+				if(iResult - iOrigin > 0)
+					abs2 = iResult - iOrigin;
+				else
+					abs2 = iOrigin - iResult;
+				
+				if((abs1 < abs2) || ((abs1 == abs2) && (i < iResult)))
+					iResult = i;
+			}
+		}
+	}
+
+	if(iResult != -1)
+	{
+		int temp = T[iOrigin].back();
+		T[iOrigin].pop_back();
+		T[iResult].push_back(temp);
+	}
+
+	return iResult;
 }
 
 void Bank::Arrival(int no)
@@ -103,6 +137,8 @@ void Bank::Departure(int no)
 			i = j;
 
 	T[i].pop_front();
+
+	int temp = this->Jockeying(i);
 }
 
 void Bank::Print()
