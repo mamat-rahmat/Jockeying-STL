@@ -27,6 +27,7 @@ Bank::Bank(const Bank& B)
 		T[i] = B.T[i];
 }
 
+
 Bank& Bank::operator=(const Bank& B)
 {
 	TMax = B.TMax;
@@ -74,7 +75,7 @@ deque<int> Bank::getQueue(int i)
 {
 	return T[i];
 }
-		
+
 int Bank::Jockeying(int iOrigin)
 {
 	int iResult = -1, abs1, abs2;
